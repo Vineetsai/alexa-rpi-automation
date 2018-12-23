@@ -1,4 +1,4 @@
-# alexa-rpi-
+# alexa-rpi-automation
 
 ## Setup
 get dependencies
