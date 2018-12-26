@@ -8,7 +8,10 @@ gpiop.setup(7, gpiop.DIR_OUT);
 gpiop.setup(11, gpiop.DIR_OUT);
 
 garage.on('listening', function() {
-    console.log("Stereo listening on", this.port);
+    console.log("Garage listening on", this.port);
+});
+light.on('listening', function() {
+    console.log("Light listening on", this.port);
 });
 
 garage.on('on', function(self, sender) {
@@ -63,7 +66,7 @@ light.on('on', function(self, sender) {
 
 light.on('off', function(self, sender) {
     const cmd= 'CLOSE';
-    gpiop.write(11, true, function(err) {
+    gpiop.write(11, false, function(err) {
         if (err) {
             console.log(`${cmd} - failed to set pin on with error: ${err}`);
         } else {
