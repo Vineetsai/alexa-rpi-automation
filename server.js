@@ -1,9 +1,11 @@
 const wemore = new require('wemore');
-var gpio = require('rpi-gpio');
+var gpiop = require('rpi-gpio');
 
 // Each emulator need unique port
-const garage = wemore.Emulate({friendlyName: "Garage", port: 9004}); // if not provided, port automatically assigned
-gpiop.setup(7, gpio.DIR_OUT);
+const garage = wemore.Emulate({friendlyName: "Garage", port: 9000}); // if not provided, port automatically assigned
+const light = wemore.Emulate({friendlyName: "Light", port: 9001}); // if not provided, port automatically assigned
+gpiop.setup(7, gpiop.DIR_OUT);
+gpiop.setup(11, gpiop.DIR_OUT);
 
 garage.on('listening', function() {
     console.log("Stereo listening on", this.port);
@@ -44,5 +46,29 @@ garage.on('off', function(self, sender) {
                 });
             }, 1000);
         }
+    });
+});
+
+// -=-= Light-=-=
+light.on('on', function(self, sender) {
+    const cmd= 'OPEN';
+    gpiop.write(11, true, function(err) {
+        if (err) {
+            console.log(`${cmd} - failed to set pin on with error: ${err}`);
+        } else {
+            console.log('Light is On');
+        }
+    });
+});
+
+light.on('off', function(self, sender) {
+    const cmd= 'CLOSE';
+    gpiop.write(11, true, function(err) {
+        if (err) {
+            console.log(`${cmd} - failed to set pin on with error: ${err}`);
+        } else {
+            console.log('Light is Off');
+        }
+
     });
 });

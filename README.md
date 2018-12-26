@@ -9,7 +9,7 @@ get dependencies
 ```npm start```
 
 ## Prepare
-Connect Rpi/Device and Alexa, and get devices discovered by Alexa. Alexa usually scan for 20 seconds to discover devices, and with in that time it able to discover 10-12 devices, in case you want to have more than that you need to make alexa to rediscover for more devices.
+Connect Rpi/Device and Alexa, and get devices discovered by Alexa. Alexa usually scan for 20 seconds to discover devices, and with in that time it able to discover 10-12 devices, in case you want to have more devices you need to rediscover for more devices.
 
 ### RPi/Device
 - Make sure alexa is connected to same local network as Alexa through wifi or ethernet
