@@ -13,6 +13,9 @@ Connect Rpi/Device and Alexa, and get devices discovered by Alexa. Alexa usually
 
 ### RPi/Device
 - Make sure alexa is connected to same local network as Alexa through wifi or ethernet
+#### Services
+- Garage: Rpi physical pin 7 (GPIO 04)
+- Light: Rpi physical pin 11 (GPIO 17)
 
 ### Alexa
 - Alexa need to be connected to local Wifi, make sure its on same network as Rpi Devices are connected to. This would allow Alexa to discover Rpi/Device on same network. 
