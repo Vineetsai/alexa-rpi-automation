@@ -4,12 +4,12 @@ var gpiop = require('rpi-gpio');
 // Each emulator need unique port
 const garage = wemore.Emulate({friendlyName: "Garage", port: 9000}); // if not provided, port automatically assigned
 const light = wemore.Emulate({friendlyName: "Light", port: 9001}); // if not provided, port automatically assigned
-gpiop.setup(7, gpiop.DIR_OUT);
-gpiop.setup(11, gpiop.DIR_OUT);
-
-// Initial state:
-gpiop.write(7, false, function(err) {});
-gpiop.write(11, false, function(err) {});
+gpiop.setup(7, gpiop.DIR_OUT,() => {
+    gpiop.write(7, false, function(err) {});
+});
+gpiop.setup(11, gpiop.DIR_OUT, () => {
+    gpiop.write(11, false, function(err) {});
+});
 
 garage.on('listening', function() {
     console.log("Garage listening on", this.port);
