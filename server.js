@@ -5,7 +5,7 @@ var gpiop = require('rpi-gpio');
 const garage = wemore.Emulate({friendlyName: "Garage", port: 9000}); // if not provided, port automatically assigned
 const light = wemore.Emulate({friendlyName: "Light", port: 9001}); // if not provided, port automatically assigned
 gpiop.setup(7, gpiop.DIR_OUT,() => {
-    gpiop.write(7, false, function(err) {});
+    gpiop.write(7, true, function(err) {});
 });
 gpiop.setup(11, gpiop.DIR_OUT, () => {
     gpiop.write(11, false, function(err) {});
@@ -20,12 +20,12 @@ light.on('listening', function() {
 
 garage.on('on', function(self, sender) {
     const cmd= 'OPEN';
-    gpiop.write(7, true, function(err) {
+    gpiop.write(7, false, function(err) {
         if (err) {
             console.log(`${cmd} - failed to set pin on with error: ${err}`);
         } else {
             setTimeout(function () {
-                gpiop.write(7, false, function(err1){
+                gpiop.write(7, true, function(err1){
                     if (err1) {
                         console.log(`${cmd} - failed to turn pin off: ${err1}`);
                     } else {
